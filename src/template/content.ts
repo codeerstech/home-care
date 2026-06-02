@@ -49,7 +49,7 @@ export const productNav: NavGroup = {
     {
       title: 'All Home Care Services',
       description: 'Explore caregivers, nurses, attendants, therapy, elder care, baby care, and live-in staff.',
-      to: '/#services',
+      to: '/services',
     },
     {
       title: 'Elder Care Services',
@@ -97,45 +97,45 @@ export const productNav: NavGroup = {
 export const integrationNav: NavGroup = {
   title: 'Trust & Safety',
   items: [
-    { title: 'Verification Process', to: '/#verification' },
-    { title: 'Background Checks', to: '/#verification' },
-    { title: 'Training Standards', to: '/#training' },
-    { title: 'Privacy Assurance', to: '/#support-policies' },
-    { title: 'Emergency Support', to: '/#support-policies' },
-    { title: 'Replacement Policy', to: '/#support-policies' },
+    { title: 'Verification Process', to: '/trust-safety/verification-process' },
+    { title: 'Background Checks', to: '/trust-safety/background-checks' },
+    { title: 'Training Standards', to: '/trust-safety/training-standards' },
+    { title: 'Privacy Assurance', to: '/trust-safety/privacy-assurance' },
+    { title: 'Emergency Support', to: '/trust-safety/emergency-support' },
+    { title: 'Replacement Policy', to: '/trust-safety/replacement-policy' },
   ],
 }
 
 export const resourceNav: NavGroup = {
   title: 'Care Plans',
   items: [
-    { title: 'Hourly Care', to: '/#availability' },
-    { title: 'Daily Shifts', to: '/#availability' },
-    { title: 'Weekly Plans', to: '/#availability' },
-    { title: 'Monthly Care', to: '/#availability' },
-    { title: 'Live-in Care', to: '/#availability' },
+    { title: 'Hourly Care', to: '/care-plans/hourly-care' },
+    { title: 'Daily Shifts', to: '/care-plans/daily-shifts' },
+    { title: 'Weekly Plans', to: '/care-plans/weekly-plans' },
+    { title: 'Monthly Care', to: '/care-plans/monthly-care' },
+    { title: 'Live-in Care', to: '/care-plans/live-in-care' },
   ],
 }
 
 export const companyNav: NavGroup = {
   title: 'Coverage',
   items: [
-    { title: 'Chennai', to: '/#coverage' },
-    { title: 'Bengaluru', to: '/#coverage' },
-    { title: 'Hyderabad', to: '/#coverage' },
-    { title: 'Mumbai', to: '/#coverage' },
-    { title: 'Pune', to: '/#coverage' },
-    { title: 'Delhi NCR', to: '/#coverage' },
+    { title: 'Chennai', to: '/coverage/chennai' },
+    { title: 'Bengaluru', to: '/coverage/bengaluru' },
+    { title: 'Hyderabad', to: '/coverage/hyderabad' },
+    { title: 'Mumbai', to: '/coverage/mumbai' },
+    { title: 'Pune', to: '/coverage/pune' },
+    { title: 'Delhi NCR', to: '/coverage/delhi-ncr' },
   ],
 }
 
 export const customerNav: NavGroup = {
   title: 'Families',
   items: [
-    { title: 'Testimonials', to: '/#testimonials' },
-    { title: 'Success Stories', to: '/#stories' },
-    { title: 'FAQ', to: '/#faq' },
-    { title: 'Request Caregiver', to: '/#caregiver-request' },
+    { title: 'Testimonials', to: '/families/testimonials' },
+    { title: 'Success Stories', to: '/families/success-stories' },
+    { title: 'FAQ', to: '/families/faq' },
+    { title: 'Request Caregiver', to: '/families/request-caregiver' },
   ],
 }
 

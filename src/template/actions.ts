@@ -3,33 +3,33 @@ import type { TemplateAction } from '../data/types'
 export const templateActions = {
   demo: {
     label: 'Request Caregiver',
-    to: '/#caregiver-request',
+    to: '/families/request-caregiver',
     kind: 'primary',
   },
   contact: {
     label: 'Book Consultation',
-    to: '/#caregiver-request',
+    to: '/families/request-caregiver',
     kind: 'secondary',
   },
   brochure: {
     label: 'View Care Packages',
-    to: '/#care-packages',
+    to: '/care-plans/monthly-care',
     kind: 'secondary',
   },
   login: {
     label: 'Family Portal',
-    to: '/#caregiver-request',
+    to: '/families/request-caregiver',
     kind: 'utility',
     ariaLabel: 'Family portal',
   },
   patient: {
     label: 'For Families',
-    to: '/#services',
+    to: '/services',
     kind: 'utility',
   },
   signup: {
     label: 'For Providers',
-    to: '/#verification',
+    to: '/trust-safety/verification-process',
     kind: 'utility',
   },
   forgotPassword: {

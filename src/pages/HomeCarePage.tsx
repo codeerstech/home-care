@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,15 +20,16 @@ import {
   coverageAreas,
   packages,
   processSteps,
+  seoPages,
   supportPolicies,
   verificationChecks,
 } from '../template/careServices'
-import { leadForm, sharedStats, site, testimonials } from '../data/site'
-import { CtaLink, FaqAccordion, LeadForm, SectionIntro, StatsStrip } from '../components/Marketing'
+import { sharedStats, site, testimonials } from '../data/site'
+import { CtaLink, FaqAccordion, SectionIntro, StatsStrip } from '../components/Marketing'
 import { MotionCard, Reveal } from '../components/Motion'
 
-const primaryCta = site.ctas.demo
-const secondaryCta = site.ctas.contact
+const primaryCta = { ...site.ctas.demo, label: 'Request Caregiver', to: '/families/request-caregiver' }
+const secondaryCta = { ...site.ctas.contact, label: 'Book Consultation', to: '/families/request-caregiver' }
 
 function TrustBadges() {
   return (
@@ -336,10 +337,55 @@ function RequestSection() {
           />
           <div className="care-contact-panel">
             <span><PhoneCall size={18} /> {site.contact.phone}</span>
-            <span><FileText size={18} /> {leadForm.fields.message.placeholder}</span>
+            <span><FileText size={18} /> Share patient needs, city, schedule, and urgency</span>
           </div>
         </div>
-        <LeadForm compact />
+        <form
+          className="lead-form lead-form--compact"
+          aria-label="Request caregiver consultation"
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <div className="form-head">
+            <span className="icon-tile"><HeartHandshake size={22} /></span>
+            <div>
+              <h3>Care requirement</h3>
+              <p>Tell us who needs support and the coordinator will guide the safest care plan.</p>
+            </div>
+          </div>
+          <div className="form-grid">
+            <label>
+              <span>Name</span>
+              <div className="input-shell"><input placeholder="Priya Raman" /></div>
+            </label>
+            <label>
+              <span>Phone</span>
+              <div className="input-shell"><input placeholder="+91 98765 43210" /></div>
+            </label>
+            <label>
+              <span>City</span>
+              <div className="input-shell">
+                <select defaultValue="">
+                  <option value="" disabled>Select city</option>
+                  {coverageAreas.map((area) => <option key={area}>{area}</option>)}
+                </select>
+              </div>
+            </label>
+            <label>
+              <span>Care type</span>
+              <div className="input-shell">
+                <select defaultValue="">
+                  <option value="" disabled>Select service</option>
+                  {careServices.map((service) => <option key={service.slug}>{service.shortTitle}</option>)}
+                </select>
+              </div>
+            </label>
+            <label className="form-grid__wide">
+              <span>Requirement</span>
+              <textarea placeholder="Example: Elder care for father in Chennai, 12-hour day shift, mobility support needed." />
+            </label>
+          </div>
+          <button className="btn btn--primary" type="submit">Request Caregiver <ArrowRight size={16} /></button>
+        </form>
       </div>
     </section>
   )
@@ -394,6 +440,73 @@ const detailLabels = [
   ['safety', 'Safety measures'],
   ['outcomes', 'Expected outcomes'],
 ] as const
+
+export function CareSeoPageRoute() {
+  const location = useLocation()
+  const page = seoPages.find((item) => item.path === location.pathname)
+  if (!page) return <Navigate to="/" replace />
+
+  return (
+    <>
+      <section className="care-detail-hero">
+        <div className="container care-detail-hero__inner">
+          <span className="icon-tile"><ShieldCheck size={24} /></span>
+          <span className="eyebrow">{page.eyebrow}</span>
+          <h1>{page.title}</h1>
+          <p>{page.description}</p>
+          <div className="care-trust-row">
+            {page.highlights.map((item) => <span key={item}><BadgeCheck size={16} /> {item}</span>)}
+          </div>
+          <div className="hero-actions">
+            <CtaLink cta={primaryCta} />
+            <Link className="btn btn--ghost" to="/services">Explore services <ArrowRight size={16} /></Link>
+          </div>
+        </div>
+      </section>
+      {page.path === '/services' ? <ServiceGrid /> : null}
+      <section className="section">
+        <div className="container care-detail-grid">
+          {page.sections.map((section) => (
+            <MotionCard className="care-detail-card" key={section.title}>
+              <span>{section.title}</span>
+              <p>{section.description}</p>
+              <ul>
+                {section.items.map((item) => <li key={item}><CheckCircle2 size={16} /> {item}</li>)}
+              </ul>
+            </MotionCard>
+          ))}
+        </div>
+      </section>
+      <section className="section section--soft">
+        <div className="container">
+          <SectionIntro
+            eyebrow={page.category}
+            title="Related care pages"
+            description="Continue through the dedicated service, care-plan, coverage, and trust pages built for family decision making."
+          />
+          <div className="care-service-grid">
+            {page.relatedLinks.map((item) => (
+              <MotionCard className="care-service-card" key={item.to}>
+                <span className="icon-tile"><ArrowRight size={20} /></span>
+                <div>
+                  <h3>{item.label}</h3>
+                  <p>Review the care model, workflow, safety approach, and next step for this requirement.</p>
+                </div>
+                <Link className="text-cta" to={item.to}>Open page <ArrowRight size={16} /></Link>
+              </MotionCard>
+            ))}
+          </div>
+        </div>
+      </section>
+      {page.path === '/families/faq' ? (
+        <section id="faq">
+          <FaqAccordion faqs={careFaqs} />
+        </section>
+      ) : null}
+      <RequestSection />
+    </>
+  )
+}
 
 export function CareServiceDetailPage() {
   const { slug } = useParams()

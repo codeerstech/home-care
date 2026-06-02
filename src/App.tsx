@@ -4,8 +4,9 @@ import { AnimatePresence } from 'framer-motion'
 import { Layout } from './components/Layout'
 import { MotionPage } from './components/Motion'
 import { routeMetaByPath } from './data/routes'
-import { CareServiceDetailPage, HomeCarePage } from './pages/HomeCarePage'
+import { CareSeoPageRoute, CareServiceDetailPage, HomeCarePage } from './pages/HomeCarePage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { seoPages } from './template/careServices'
 import { TemplateProvider } from './template/TemplateProvider'
 import { site } from './template/content'
 
@@ -43,6 +44,9 @@ function AppRoutes() {
         <MotionPage key={location.pathname}>
           <Routes location={location}>
             <Route path="/" element={<HomeCarePage />} />
+            {seoPages.map((page) => (
+              <Route key={page.path} path={page.path} element={<CareSeoPageRoute />} />
+            ))}
             <Route path="/services/:slug" element={<CareServiceDetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

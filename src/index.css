@@ -174,15 +174,17 @@ svg {
 }
 
 .desktop-nav {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 4px;
   flex: 1;
 }
 
 .nav-trigger,
 .text-link {
+  flex: 0 0 auto;
   min-height: 40px;
   display: inline-flex;
   align-items: center;
@@ -194,6 +196,7 @@ svg {
   color: var(--color-nav-text);
   font-size: 14px;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .nav-trigger:hover,
@@ -287,9 +290,14 @@ svg {
 }
 
 .header-actions {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.header-actions .btn {
+  white-space: nowrap;
 }
 
 .icon-btn {
@@ -312,6 +320,12 @@ svg {
 .mobile-toggle,
 .mobile-nav {
   display: none;
+}
+
+@media (max-width: 1500px) {
+  .header-actions .text-link.hide-sm {
+    display: none;
+  }
 }
 
 .btn {
@@ -1997,7 +2011,7 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1260px) {
   .desktop-nav {
     display: none;
   }
