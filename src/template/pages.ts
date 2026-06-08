@@ -380,6 +380,27 @@ const featurePages: MarketingPageContent[] = [
 
 const companyPages: MarketingPageContent[] = [
   {
+    path: '/about-us',
+    pageType: 'company',
+    category: 'Company',
+    eyebrow: 'About Us',
+    title: `${site.brand.name} brings dependable home care coordination to families`,
+    description:
+      'A dedicated about page for the care brand, ready to adapt with team standards, caregiver verification, family support, and service principles.',
+    sourceUrl: 'https://example.com/about-us',
+    visual: 'people',
+    primaryCta: demoCta,
+    secondaryCta: contactCta,
+    heroStats: sharedStats,
+    features: platformFeatures,
+    operationsTitle: 'How we support families',
+    operationsIntro: 'The about page explains how care requests are reviewed, matched, coordinated, and followed up.',
+    operations: operationalFeatures,
+    outcomesTitle: 'Care standards',
+    outcomes: outcomeStats,
+    faqs: standardFaqs,
+  },
+  {
     path: '/best-healthcare-software-development-company',
     pageType: 'company',
     category: 'Company',
